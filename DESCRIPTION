@@ -1,0 +1,17 @@
+Package: collins.pkg
+Title: R package for crabs project
+Version: 0.1.0
+Authors@R: c(person
+          (given = "Caleb", 
+          family = "Collins",
+          role = c("cre","aut"),
+          email = "caleb.collins-2@selu.edu")
+          )
+Description: my R project for 408 fall 2023 hope it works ;)
+License: MIT + file LICENSE
+Depends: 
+  R(>= 2.1.0)
+Imports: tidyverse, broom, ggplot2
+VignetteBuilder: knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
