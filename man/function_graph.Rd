@@ -2,7 +2,7 @@
 % Please edit documentation in R/Graph_data.R
 \name{function_graph}
 \alias{function_graph}
-\title{Calculate volume using H\emph{L}W}
+\title{Graphs X vs Y on a scatter plot}
 \usage{
 function_graph(data, column, column_1)
 }
@@ -17,5 +17,5 @@ function_graph(data, column, column_1)
 graph of x vs y
 }
 \description{
-Using Height, Length and Width to calculate volume by multiplying the three number
+Creates a scatter plot used to show trends between x and y in a data set
 }

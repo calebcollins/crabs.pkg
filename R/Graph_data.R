@@ -1,6 +1,6 @@
-#' Calculate volume using H*L*W
+#' Graphs X vs Y on a scatter plot 
 #' 
-#' Using Height, Length and Width to calculate volume by multiplying the three number 
+#' Creates a scatter plot used to show trends between x and y in a data set
 #' 
 #' @param data data set being used
 #' @param column column for x axis 

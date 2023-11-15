@@ -1,6 +1,6 @@
-#' Calculate volume using H*L*W
+#' Linear model for crabs
 #' 
-#' Using Height, Length and Width to calculate volume by multiplying the three number 
+#' compares X~Y comlumns using an linear model
 #' 
 #' @param df data set being used
 #' @param column x in the lm 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/lm_function.R
 \name{lm_function}
 \alias{lm_function}
-\title{Calculate volume using H\emph{L}W}
+\title{Linear model for crabs}
 \usage{
 lm_function(df, column, column_2)
 }
@@ -17,5 +17,5 @@ lm_function(df, column, column_2)
 Linear model chart
 }
 \description{
-Using Height, Length and Width to calculate volume by multiplying the three number
+compares X~Y comlumns using an linear model
 }
