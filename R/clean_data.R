@@ -2,6 +2,11 @@
 #' 
 #' well remove an missing value/ NA rows to aloow for functions to be completed 
 
+#' @param data data to be cleaned
+#' @return data with no na's  
+#' 
+#' @export
+
 
 clean_data <-function(data){
   clean <- na.omit(data)
