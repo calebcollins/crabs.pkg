@@ -6,6 +6,12 @@
 \usage{
 clean_data(data)
 }
+\arguments{
+\item{data}{data to be cleaned}
+}
+\value{
+data with no na's
+}
 \description{
 well remove an missing value/ NA rows to aloow for functions to be completed
 }
