@@ -11,6 +11,9 @@
 function_graph <- function(data, column, column_1){
   new <- data %>% 
     ggplot(mapping = aes(x={{column}}, y = {{column_1}})) + geom_point()
-  return(new)}
+  if(is.numeric(x,y))
+  {return(new)}else{
+       print("X or Y is not numeric")
+     }}
     
 #function_graph(crabs, rear_width, body_depth )

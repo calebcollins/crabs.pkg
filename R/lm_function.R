@@ -10,9 +10,9 @@
 #' @export
 
 lm_function <- function(df, column, column_2){
-  model<-df%>% 
-    select({{column}},{{column_2}})
-    lm({{column}} ~ {{column_2}}, data = df)
-  return(model)
+  df%>% 
+    select({{column}},{{column_2}}) %>% 
+    lm({{column}} ~ {{column_2}}, data = df) %>% 
+    summary()
 }
 #lm_function(crabs, rear_width, body_depth)
