@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Caleb
 Collins</h4>
             
-            <h4 data-toc-skip class="date">2023-11-14</h4>
+            <h4 data-toc-skip class="date">2023-11-21</h4>
       
       
       <div class="hidden name"><code>crabstutorial.Rmd</code></div>
@@ -81,30 +81,40 @@ Collins</h4>
 
     
     
-<p>Crabs data provided in data folder for gbio 408</p>
+<p>#Step 1 download R package from Github</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"calebcollins/crabs.pkg"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Using github PAT from envvar GITHUB_PAT</span></span></code></pre>
 <pre><code><span><span class="co">## Downloading GitHub repo calebcollins/crabs.pkg@HEAD</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## * checking for file ‘/tmp/RtmptDzmlY/remotes2925a69e6b1/calebcollins-crabs.pkg-8a6fc36/DESCRIPTION’ ... OK</span></span>
+<pre><code><span><span class="co">## stringi (1.7.12 -&gt; 1.8.1) [CRAN]</span></span>
+<span><span class="co">## stringr (1.5.0  -&gt; 1.5.1) [CRAN]</span></span>
+<span><span class="co">## dplyr   (1.1.3  -&gt; 1.1.4) [CRAN]</span></span></code></pre>
+<pre><code><span><span class="co">## Installing 3 packages: stringi, stringr, dplyr</span></span></code></pre>
+<pre><code><span><span class="co">## Installing packages into '/tmp/RtmpgB2z45/temp_libpath12f6de5acc4'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">## * checking for file ‘/tmp/RtmpbIdwq4/remotes1385690c47b1/calebcollins-crabs.pkg-5f72fd5/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">## * preparing ‘collins.pkg’:</span></span>
 <span><span class="co">## * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">## * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">## * checking for empty or unneeded directories</span></span>
 <span><span class="co">## * building ‘collins.pkg_0.1.0.tar.gz’</span></span>
 <span><span class="co">## Warning: invalid uid value replaced by that for user 'nobody'</span></span></code></pre>
-<pre><code><span><span class="co">## Installing package into '/tmp/RtmpSUtGc9/temp_libpath12f4928b749'</span></span>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpgB2z45/temp_libpath12f6de5acc4'</span></span>
 <span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<p>In this tutorial we will be using the crabs data set provided by
-stitch</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">collins.pkg</span><span class="op">)</span></span></code></pre></div>
+<p>#Step 2, Download the crabs data set from googlesheets</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org" class="external-link">googlesheets4</a></span><span class="op">)</span></span>
 <span><span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html" class="external-link">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">crabs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html" class="external-link">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Reading from <span style="color: #00BBBB;">crabs</span>.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Range <span style="color: #BBBB00;">crabs</span>.</span></span></code></pre>
+<p>#Now we will clean the data set by removing na’s if na’s remain it
+will return ” #Na’s still present”</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/clean_data.html">clean_data</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -3,7 +3,7 @@
 #' with alter data ordering by a chosen column
 #' 
 #' @param data data set being used
-#' @param column column order by
+#' @param column column used for reordering
 #' 
 #' @return data reordered 
 #' 

@@ -9,7 +9,7 @@ mutate_data(data, column_names)
 \arguments{
 \item{data}{data set being used}
 
-\item{column}{column order by}
+\item{column}{column used for reordering}
 }
 \value{
 data reordered
