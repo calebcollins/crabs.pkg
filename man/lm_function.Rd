@@ -4,14 +4,14 @@
 \alias{lm_function}
 \title{Linear model for crabs}
 \usage{
-lm_function(df, column, column_2)
+lm_function(df, dependent, independent)
 }
 \arguments{
 \item{df}{data set being used}
 
-\item{column}{x in the lm}
+\item{dependent}{x in the lm}
 
-\item{column_2}{y in the lm}
+\item{independent}{y in the lm}
 }
 \value{
 Linear model chart

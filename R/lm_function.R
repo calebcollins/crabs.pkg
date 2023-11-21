@@ -3,16 +3,20 @@
 #' compares X~Y comlumns using an linear model
 #' 
 #' @param df data set being used
-#' @param column x in the lm 
-#' @param column_2 y in the lm 
+#' @param dependent x in the lm 
+#' @param independent y in the lm 
 #' @return Linear model chart  
 #' 
 #' @export
 
-lm_function <- function(df, column, column_2){
-  df%>% 
-    select({{column}},{{column_2}}) %>% 
-    lm({{column}} ~ {{column_2}}, data = df) %>% 
-    summary()
+lm_function <- function(df, dependent,independent){
+  if(!dependent %in% names(df) || any(!independent %in% names(df))) {
+    stop("Column is not in data set ")
+  }
+  df %>% 
+    select(a= quo_name(dependent), starts_with(independent)) %>% 
+    lm(a~ ., data = .) %>% 
+    summary
 }
-#lm_function(crabs, rear_width, body_depth)
+#lm_function(crabs, "rear_width", "body_depth")
+#lm_function(crabs, "rear_width", "hindfoot_length")

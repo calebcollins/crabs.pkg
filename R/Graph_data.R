@@ -9,11 +9,10 @@
 #' 
 #' @export
 function_graph <- function(data, column, column_1){
-  new <- data %>% 
+   new <-data %>% 
     ggplot(mapping = aes(x={{column}}, y = {{column_1}})) + geom_point()
-  if(is.numeric(x,y))
-  {return(new)}else{
-       print("X or Y is not numeric")
-     }}
+  return(new)
+ }
     
-#function_graph(crabs, rear_width, body_depth )
+#function_graph(crabs, rear_width, body_depth)
+#function_graph(crabs, sex, color)

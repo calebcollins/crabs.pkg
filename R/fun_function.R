@@ -11,3 +11,6 @@ fun_function <- function(data){
     as.data.frame(sapply(data, as.numeric))
   return(new)
 }
+
+#fun_function(crabs)
+#crabs

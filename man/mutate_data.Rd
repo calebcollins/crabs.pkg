@@ -2,20 +2,18 @@
 % Please edit documentation in R/mutate_data.R
 \name{mutate_data}
 \alias{mutate_data}
-\title{mutates the data and creates a new column}
+\title{mutates the data by reorganizing}
 \usage{
-mutate_data(data, column, new_column)
+mutate_data(data, column_names)
 }
 \arguments{
 \item{data}{data set being used}
 
-\item{column}{column used for mutating}
-
-\item{new_column}{name of mutated column}
+\item{column}{column order by}
 }
 \value{
-Linear model chart
+data reordered
 }
 \description{
-with alter data and create a new column with an assigned name
+with alter data ordering by a chosen column
 }

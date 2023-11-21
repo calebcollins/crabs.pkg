@@ -1,19 +1,22 @@
-#' mutates the data and creates a new column 
+#' mutates the data by reorganizing  
 #' 
-#' with alter data and create a new column with an assigned name 
+#' with alter data ordering by a chosen column
 #' 
 #' @param data data set being used
-#' @param column column used for mutating 
-#' @param new_column name of mutated column
-#' @return Linear model chart  
+#' @param column column order by
+#' 
+#' @return data reordered 
 #' 
 #' @export
-mutate_data <- function(data, column, new_column){
-if (is.numeric({{column}}) == TRUE) {
-new <- data %>%
-select(column)
-mutate(new = {{column}}/2) %>%
-rename({{new_column}} := new)
-return(new)}}
 
-#mutate_data(surveys,hindfoot_length, HFL2)
+
+mutate_data <-function(data, column_names){
+  if(!column_names %in% names(data)){
+    stop("Column is not in data set ")
+  }
+  crabs_organized <- crabs %>% 
+    arrange(across(({{column_names}})))
+  return(crabs_organized)
+}
+#mutate_data(crabs,"rear_width" )
+#mutate_data(crabs, "hindfoot_lenght")
