@@ -32,21 +32,16 @@ clean_data(crabs)
 ```
 
 
-Now we will mutate the data. Sorting by it choosen column
+Now we will mutate the data. Sorting it by a chosen column
 ```{r, eval=FALSE}
 mutate_data(crabs, "hindfoot_lenght")
-```
 
-```{r}
-mutate_data(crabs,"rear_width" )
+mutate_data(crabs,"rear_width")
 ```
 
 Now we will make a graph with two columns 
 ```{r} 
 function_graph(crabs, rear_width, body_depth)
-```
-
-```{r}
 function_graph(crabs, sex, color)
 ```
 

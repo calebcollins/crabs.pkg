@@ -8,6 +8,7 @@
 #' @return graph of x vs y 
 #' 
 #' @export
+
 function_graph <- function(data, column, column_1){
    new <-data %>% 
     ggplot(mapping = aes(x={{column}}, y = {{column_1}})) + geom_point()
