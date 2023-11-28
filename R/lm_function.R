@@ -16,7 +16,7 @@ lm_function <- function(df, dependent,independent){
   df %>% 
     select(a= quo_name(dependent), starts_with(independent)) %>% 
     lm(a~ ., data = .) %>% 
-    summary
+    summary()
 }
 #lm_function(crabs, "rear_width", "body_depth")
 #lm_function(crabs, "rear_width", "hindfoot_length")

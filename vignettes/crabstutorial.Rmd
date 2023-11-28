@@ -38,6 +38,7 @@ mutate_data(crabs,"rear_width")
 
 Now we will make a graph with two columns 
 ```{r} 
+library(ggplot2)
 function_graph(crabs, rear_width, body_depth)
 ```
 ```{r}
@@ -47,6 +48,7 @@ function_graph(crabs, sex, color)
 Next we will perform an linear model analysis
 
 ```{r}
+ library(dplyr)
 lm_function(crabs, "rear_width", "body_depth")
 ```
 

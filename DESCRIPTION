@@ -11,7 +11,9 @@ Description: my R project for 408 fall 2023 hope it works ;)
 License: MIT + file LICENSE
 Depends: 
   R(>= 2.1.0)
-Imports: tidyverse, broom, ggplot2
+Imports: tidyverse, broom, ggplot2, dplyr
+Suggests: knitr
 VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
