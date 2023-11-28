@@ -21,17 +21,14 @@ Step 2, Download the crabs data set from googlesheets
 library(googlesheets4)
 googlesheets4::gs4_deauth()
 crabs <- read_sheet("https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing")
-surveys <-read_sheet("https://docs.google.com/spreadsheets/d/11xgB-_F__bV908XlIFSEXvxmzgnA_n-tBwO7_B3xeBg/edit?usp=sharing")
 ```
+
+
 
 Now we will clean the data set by removing na's will stop if no N/As are found 
 
 ```{r, eval=FALSE}
 clean_data(crabs)
-```
-
-```{r}
-clean_data(surveys)
 ```
 
 
