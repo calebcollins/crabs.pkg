@@ -36,7 +36,7 @@ clean_data(surveys)
 
 
 Now we will mutate the data. Sorting by it choosen column
-```{r}
+```{r, eval=FALSE}
 mutate_data(crabs, "hindfoot_lenght")
 ```
 
@@ -59,7 +59,7 @@ Next we will perform an linear model analysis
 lm_function(crabs, "rear_width", "body_depth")
 ```
 
-```{r}
+```{r,eval=FALSE}
 lm_function(crabs, "rear_width", "hindfoot_length")
 ```
 
