@@ -9,4 +9,61 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Crabs data provided in data folder for gbio 408
+Step 1 download R package from Github
+
+```{r} 
+devtools::install_github("calebcollins/crabs.pkg")
+library(collins.pkg)
+```
+Step 2, Download the crabs data set from googlesheets
+
+```{r}
+library(googlesheets4)
+googlesheets4::gs4_deauth()
+crabs <- read_sheet("https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing")
+surveys <- read_sheet("https://docs.google.com/spreadsheets/d/11xgB-_F__bV908XlIFSEXvxmzgnA_n-tBwO7_B3xeBg/edit?usp=sharing")
+```
+
+Now we will clean the data set by removing na's will stop if no N/As are found 
+
+```{r, eval=FALSE}
+clean_data(crabs)
+```
+
+```{r}
+clean_data(surveys)
+```
+
+
+Now we will mutate the data. Sorting by it choosen column
+```{r}
+mutate_data(crabs, "hindfoot_lenght")
+```
+
+```{r}
+mutate_data(crabs,"rear_width" )
+```
+
+Now we will make a graph with two columns 
+```{r} 
+function_graph(crabs, rear_width, body_depth)
+```
+
+```{r}
+function_graph(crabs, sex, color)
+```
+
+Next we will perform an linear model analysis
+
+```{r}
+lm_function(crabs, "rear_width", "body_depth")
+```
+
+```{r}
+lm_function(crabs, "rear_width", "hindfoot_length")
+```
+
+Last we will kill the data because i did it on accident 
+```{r} 
+fun_function(crabs)
+```
