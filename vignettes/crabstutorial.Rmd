@@ -22,9 +22,6 @@ library(googlesheets4)
 googlesheets4::gs4_deauth()
 crabs <- read_sheet("https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing")
 ```
-
-
-
 Now we will clean the data set by removing na's will stop if no N/As are found 
 
 ```{r, eval=FALSE}
@@ -42,6 +39,8 @@ mutate_data(crabs,"rear_width")
 Now we will make a graph with two columns 
 ```{r} 
 function_graph(crabs, rear_width, body_depth)
+```
+```{r}
 function_graph(crabs, sex, color)
 ```
 
