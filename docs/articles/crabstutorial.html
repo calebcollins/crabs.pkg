@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Caleb
 Collins</h4>
             
-            <h4 data-toc-skip class="date">2023-11-21</h4>
+            <h4 data-toc-skip class="date">2023-11-28</h4>
       
       
       <div class="hidden name"><code>crabstutorial.Rmd</code></div>
@@ -81,40 +81,485 @@ Collins</h4>
 
     
     
-<p>#Step 1 download R package from Github</p>
+<p>Step 1 download R package from Github</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"calebcollins/crabs.pkg"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Using github PAT from envvar GITHUB_PAT</span></span></code></pre>
 <pre><code><span><span class="co">## Downloading GitHub repo calebcollins/crabs.pkg@HEAD</span></span></code></pre>
-<pre><code><span><span class="co">## stringi (1.7.12 -&gt; 1.8.1) [CRAN]</span></span>
-<span><span class="co">## stringr (1.5.0  -&gt; 1.5.1) [CRAN]</span></span>
-<span><span class="co">## dplyr   (1.1.3  -&gt; 1.1.4) [CRAN]</span></span></code></pre>
-<pre><code><span><span class="co">## Installing 3 packages: stringi, stringr, dplyr</span></span></code></pre>
-<pre><code><span><span class="co">## Installing packages into '/tmp/RtmpgB2z45/temp_libpath12fae8a5c1'</span></span>
-<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## * checking for file ‘/tmp/RtmptgZjWR/remotes180e7f369cb4/calebcollins-crabs.pkg-fde6acb/DESCRIPTION’ ... OK</span></span>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">## * checking for file ‘/tmp/RtmpgVk4TS/remotes3aab5fdee681/calebcollins-crabs.pkg-d40b492/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">## * preparing ‘collins.pkg’:</span></span>
 <span><span class="co">## * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">## * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">## * checking for empty or unneeded directories</span></span>
 <span><span class="co">## * building ‘collins.pkg_0.1.0.tar.gz’</span></span>
 <span><span class="co">## Warning: invalid uid value replaced by that for user 'nobody'</span></span></code></pre>
-<pre><code><span><span class="co">## Installing package into '/tmp/RtmpgB2z45/temp_libpath12fae8a5c1'</span></span>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpSZoCxI/temp_libpath396c7cf3e163'</span></span>
 <span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">collins.pkg</span><span class="op">)</span></span></code></pre></div>
-<p>#Step 2, Download the crabs data set from googlesheets</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>Step 2, Download the crabs data set from googlesheets</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org" class="external-link">googlesheets4</a></span><span class="op">)</span></span>
 <span><span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html" class="external-link">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">crabs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html" class="external-link">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Reading from <span style="color: #00BBBB;">crabs</span>.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Range <span style="color: #BBBB00;">crabs</span>.</span></span></code></pre>
-<p>#Now we will clean the data set by removing na’s if na’s remain it
-will return ” #Na’s still present”</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>Now we will clean the data set by removing na’s will stop if no N/As
+are found</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/clean_data.html">clean_data</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
+<p>Now we will mutate the data. Sorting it by a chosen column</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"hindfoot_lenght"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>,<span class="st">"rear_width"</span><span class="op">)</span></span></code></pre></div>
+<p>Now we will make a graph with two columns</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/function_graph.html">function_graph</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">rear_width</span>, <span class="va">body_depth</span><span class="op">)</span></span></code></pre></div>
+<p><img src="crabstutorial_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/function_graph.html">function_graph</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">sex</span>, <span class="va">color</span><span class="op">)</span></span></code></pre></div>
+<p><img src="crabstutorial_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p>Next we will perform an linear model analysis</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     filter, lag</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/lm_function.html">lm_function</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"rear_width"</span>, <span class="st">"body_depth"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## lm(formula = a ~ ., data = .)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residuals:</span></span>
+<span><span class="co">##      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">## -2.09599 -1.04998 -0.01039  0.97169  3.11330 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  3.36416    0.35279   9.536   &lt;2e-16 ***</span></span>
+<span><span class="co">## body_depth   0.66814    0.02443  27.349   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residual standard error: 1.18 on 198 degrees of freedom</span></span>
+<span><span class="co">## Multiple R-squared:  0.7907, Adjusted R-squared:  0.7896 </span></span>
+<span><span class="co">## F-statistic: 747.9 on 1 and 198 DF,  p-value: &lt; 2.2e-16</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/lm_function.html">lm_function</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"rear_width"</span>, <span class="st">"hindfoot_length"</span><span class="op">)</span></span></code></pre></div>
+<p>Last we will kill the data because i did it on accident</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fun_function.html">fun_function</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      color sex frontal_lobe rear_width carapace_length carapace_width</span></span>
+<span><span class="co">## 1     blue   M          8.1        6.7            16.1           19.0</span></span>
+<span><span class="co">## 2     blue   M          8.8        7.7            18.1           20.8</span></span>
+<span><span class="co">## 3     blue   M          9.2        7.8            19.0           22.4</span></span>
+<span><span class="co">## 4     blue   M          9.6        7.9            20.1           23.1</span></span>
+<span><span class="co">## 5     blue   M          9.8        8.0            20.3           23.0</span></span>
+<span><span class="co">## 6     blue   M         10.8        9.0            23.0           26.5</span></span>
+<span><span class="co">## 7     blue   M         11.1        9.9            23.8           27.1</span></span>
+<span><span class="co">## 8     blue   M         11.6        9.1            24.5           28.4</span></span>
+<span><span class="co">## 9     blue   M         11.8        9.6            24.2           27.8</span></span>
+<span><span class="co">## 10    blue   M         11.8       10.5            25.2           29.3</span></span>
+<span><span class="co">## 11    blue   M         12.2       10.8            27.3           31.6</span></span>
+<span><span class="co">## 12    blue   M         12.3       11.0            26.8           31.5</span></span>
+<span><span class="co">## 13    blue   M         12.6       10.0            27.7           31.7</span></span>
+<span><span class="co">## 14    blue   M         12.8       10.2            27.2           31.8</span></span>
+<span><span class="co">## 15    blue   M         12.8       10.9            27.4           31.5</span></span>
+<span><span class="co">## 16    blue   M         12.9       11.0            26.8           30.9</span></span>
+<span><span class="co">## 17    blue   M         13.1       10.6            28.2           32.3</span></span>
+<span><span class="co">## 18    blue   M         13.1       10.9            28.3           32.4</span></span>
+<span><span class="co">## 19    blue   M         13.3       11.1            27.8           32.3</span></span>
+<span><span class="co">## 20    blue   M         13.9       11.1            29.2           33.3</span></span>
+<span><span class="co">## 21    blue   M         14.3       11.6            31.3           35.5</span></span>
+<span><span class="co">## 22    blue   M         14.6       11.3            31.9           36.4</span></span>
+<span><span class="co">## 23    blue   M         15.0       10.9            31.4           36.4</span></span>
+<span><span class="co">## 24    blue   M         15.0       11.5            32.4           37.0</span></span>
+<span><span class="co">## 25    blue   M         15.0       11.9            32.5           37.2</span></span>
+<span><span class="co">## 26    blue   M         15.2       12.1            32.3           36.7</span></span>
+<span><span class="co">## 27    blue   M         15.4       11.8            33.0           37.5</span></span>
+<span><span class="co">## 28    blue   M         15.7       12.6            35.8           40.3</span></span>
+<span><span class="co">## 29    blue   M         15.9       12.7            34.0           38.9</span></span>
+<span><span class="co">## 30    blue   M         16.1       11.6            33.8           39.0</span></span>
+<span><span class="co">## 31    blue   M         16.1       12.8            34.9           40.7</span></span>
+<span><span class="co">## 32    blue   M         16.2       13.3            36.0           41.7</span></span>
+<span><span class="co">## 33    blue   M         16.3       12.7            35.6           40.9</span></span>
+<span><span class="co">## 34    blue   M         16.4       13.0            35.7           41.8</span></span>
+<span><span class="co">## 35    blue   M         16.6       13.5            38.1           43.4</span></span>
+<span><span class="co">## 36    blue   M         16.8       12.8            36.2           41.8</span></span>
+<span><span class="co">## 37    blue   M         16.9       13.2            37.3           42.7</span></span>
+<span><span class="co">## 38    blue   M         17.1       12.6            36.4           42.0</span></span>
+<span><span class="co">## 39    blue   M         17.1       12.7            36.7           41.9</span></span>
+<span><span class="co">## 40    blue   M         17.2       13.5            37.6           43.9</span></span>
+<span><span class="co">## 41    blue   M         17.7       13.6            38.7           44.5</span></span>
+<span><span class="co">## 42    blue   M         17.9       14.1            39.7           44.6</span></span>
+<span><span class="co">## 43    blue   M         18.0       13.7            39.2           44.4</span></span>
+<span><span class="co">## 44    blue   M         18.8       15.8            42.1           49.0</span></span>
+<span><span class="co">## 45    blue   M         19.3       13.5            41.6           47.4</span></span>
+<span><span class="co">## 46    blue   M         19.3       13.8            40.9           46.5</span></span>
+<span><span class="co">## 47    blue   M         19.7       15.3            41.9           48.5</span></span>
+<span><span class="co">## 48    blue   M         19.8       14.2            43.2           49.7</span></span>
+<span><span class="co">## 49    blue   M         19.8       14.3            42.4           48.9</span></span>
+<span><span class="co">## 50    blue   M         21.3       15.7            47.1           54.6</span></span>
+<span><span class="co">## 51    blue   F          7.2        6.5            14.7           17.1</span></span>
+<span><span class="co">## 52    blue   F          9.0        8.5            19.3           22.7</span></span>
+<span><span class="co">## 53    blue   F          9.1        8.1            18.5           21.6</span></span>
+<span><span class="co">## 54    blue   F          9.1        8.2            19.2           22.2</span></span>
+<span><span class="co">## 55    blue   F          9.5        8.2            19.6           22.4</span></span>
+<span><span class="co">## 56    blue   F          9.8        8.9            20.4           23.9</span></span>
+<span><span class="co">## 57    blue   F         10.1        9.3            20.9           24.4</span></span>
+<span><span class="co">## 58    blue   F         10.3        9.5            21.3           24.7</span></span>
+<span><span class="co">## 59    blue   F         10.4        9.7            21.7           25.4</span></span>
+<span><span class="co">## 60    blue   F         10.8        9.5            22.5           26.3</span></span>
+<span><span class="co">## 61    blue   F         11.0        9.8            22.5           25.7</span></span>
+<span><span class="co">## 62    blue   F         11.2       10.0            22.8           26.9</span></span>
+<span><span class="co">## 63    blue   F         11.5       11.0            24.7           29.2</span></span>
+<span><span class="co">## 64    blue   F         11.6       11.0            24.6           28.5</span></span>
+<span><span class="co">## 65    blue   F         11.6       11.4            23.7           27.7</span></span>
+<span><span class="co">## 66    blue   F         11.7       10.6            24.9           28.5</span></span>
+<span><span class="co">## 67    blue   F         11.9       11.4            26.0           30.1</span></span>
+<span><span class="co">## 68    blue   F         12.0       10.7            24.6           28.9</span></span>
+<span><span class="co">## 69    blue   F         12.0       11.1            25.4           29.2</span></span>
+<span><span class="co">## 70    blue   F         12.6       12.2            26.1           31.6</span></span>
+<span><span class="co">## 71    blue   F         12.8       11.7            27.1           31.2</span></span>
+<span><span class="co">## 72    blue   F         12.8       12.2            26.7           31.1</span></span>
+<span><span class="co">## 73    blue   F         12.8       12.2            27.9           31.9</span></span>
+<span><span class="co">## 74    blue   F         13.0       11.4            27.3           31.8</span></span>
+<span><span class="co">## 75    blue   F         13.1       11.5            27.6           32.6</span></span>
+<span><span class="co">## 76    blue   F         13.2       12.2            27.9           32.1</span></span>
+<span><span class="co">## 77    blue   F         13.4       11.8            28.4           32.7</span></span>
+<span><span class="co">## 78    blue   F         13.7       12.5            28.6           33.8</span></span>
+<span><span class="co">## 79    blue   F         13.9       13.0            30.0           34.9</span></span>
+<span><span class="co">## 80    blue   F         14.7       12.5            30.1           34.7</span></span>
+<span><span class="co">## 81    blue   F         14.9       13.2            30.1           35.6</span></span>
+<span><span class="co">## 82    blue   F         15.0       13.8            31.7           36.9</span></span>
+<span><span class="co">## 83    blue   F         15.0       14.2            32.8           37.4</span></span>
+<span><span class="co">## 84    blue   F         15.1       13.3            31.8           36.3</span></span>
+<span><span class="co">## 85    blue   F         15.1       13.5            31.9           37.0</span></span>
+<span><span class="co">## 86    blue   F         15.1       13.8            31.7           36.6</span></span>
+<span><span class="co">## 87    blue   F         15.2       14.3            33.9           38.5</span></span>
+<span><span class="co">## 88    blue   F         15.3       14.2            32.6           38.3</span></span>
+<span><span class="co">## 89    blue   F         15.4       13.3            32.4           37.6</span></span>
+<span><span class="co">## 90    blue   F         15.5       13.8            33.4           38.7</span></span>
+<span><span class="co">## 91    blue   F         15.6       13.9            32.8           37.9</span></span>
+<span><span class="co">## 92    blue   F         15.6       14.7            33.9           39.5</span></span>
+<span><span class="co">## 93    blue   F         15.7       13.9            33.6           38.5</span></span>
+<span><span class="co">## 94    blue   F         15.8       15.0            34.5           40.3</span></span>
+<span><span class="co">## 95    blue   F         16.2       15.2            34.5           40.1</span></span>
+<span><span class="co">## 96    blue   F         16.4       14.0            34.2           39.8</span></span>
+<span><span class="co">## 97    blue   F         16.7       16.1            36.6           41.9</span></span>
+<span><span class="co">## 98    blue   F         17.4       16.9            38.2           44.1</span></span>
+<span><span class="co">## 99    blue   F         17.5       16.7            38.6           44.5</span></span>
+<span><span class="co">## 100   blue   F         19.2       16.5            40.9           47.9</span></span>
+<span><span class="co">## 101 orange   M          9.1        6.9            16.7           18.6</span></span>
+<span><span class="co">## 102 orange   M         10.2        8.2            20.2           22.2</span></span>
+<span><span class="co">## 103 orange   M         10.7        8.6            20.7           22.7</span></span>
+<span><span class="co">## 104 orange   M         11.4        9.0            22.7           24.8</span></span>
+<span><span class="co">## 105 orange   M         12.5        9.4            23.2           26.0</span></span>
+<span><span class="co">## 106 orange   M         12.5        9.4            24.2           27.0</span></span>
+<span><span class="co">## 107 orange   M         12.7       10.4            26.0           28.8</span></span>
+<span><span class="co">## 108 orange   M         13.2       11.0            27.1           30.4</span></span>
+<span><span class="co">## 109 orange   M         13.4       10.1            26.6           29.6</span></span>
+<span><span class="co">## 110 orange   M         13.7       11.0            27.5           30.5</span></span>
+<span><span class="co">## 111 orange   M         14.0       11.5            29.2           32.2</span></span>
+<span><span class="co">## 112 orange   M         14.1       10.4            28.9           31.8</span></span>
+<span><span class="co">## 113 orange   M         14.1       10.5            29.1           31.6</span></span>
+<span><span class="co">## 114 orange   M         14.1       10.7            28.7           31.9</span></span>
+<span><span class="co">## 115 orange   M         14.2       10.6            28.7           31.7</span></span>
+<span><span class="co">## 116 orange   M         14.2       10.7            27.8           30.9</span></span>
+<span><span class="co">## 117 orange   M         14.2       11.3            29.2           32.2</span></span>
+<span><span class="co">## 118 orange   M         14.6       11.3            29.9           33.5</span></span>
+<span><span class="co">## 119 orange   M         14.7       11.1            29.0           32.1</span></span>
+<span><span class="co">## 120 orange   M         15.1       11.4            30.2           33.3</span></span>
+<span><span class="co">## 121 orange   M         15.1       11.5            30.9           34.0</span></span>
+<span><span class="co">## 122 orange   M         15.4       11.1            30.2           33.6</span></span>
+<span><span class="co">## 123 orange   M         15.7       12.2            31.7           34.2</span></span>
+<span><span class="co">## 124 orange   M         16.2       11.8            32.3           35.3</span></span>
+<span><span class="co">## 125 orange   M         16.3       11.6            31.6           34.2</span></span>
+<span><span class="co">## 126 orange   M         17.1       12.6            35.0           38.9</span></span>
+<span><span class="co">## 127 orange   M         17.4       12.8            36.1           39.5</span></span>
+<span><span class="co">## 128 orange   M         17.5       12.0            34.4           37.3</span></span>
+<span><span class="co">## 129 orange   M         17.5       12.7            34.6           38.4</span></span>
+<span><span class="co">## 130 orange   M         17.8       12.5            36.0           39.8</span></span>
+<span><span class="co">## 131 orange   M         17.9       12.9            36.9           40.9</span></span>
+<span><span class="co">## 132 orange   M         18.0       13.4            36.7           41.3</span></span>
+<span><span class="co">## 133 orange   M         18.2       13.7            38.8           42.7</span></span>
+<span><span class="co">## 134 orange   M         18.4       13.4            37.9           42.2</span></span>
+<span><span class="co">## 135 orange   M         18.6       13.4            37.8           41.9</span></span>
+<span><span class="co">## 136 orange   M         18.6       13.5            36.9           40.2</span></span>
+<span><span class="co">## 137 orange   M         18.8       13.4            37.2           41.1</span></span>
+<span><span class="co">## 138 orange   M         18.8       13.8            39.2           43.3</span></span>
+<span><span class="co">## 139 orange   M         19.4       14.1            39.1           43.2</span></span>
+<span><span class="co">## 140 orange   M         19.4       14.4            39.8           44.3</span></span>
+<span><span class="co">## 141 orange   M         20.1       13.7            40.6           44.5</span></span>
+<span><span class="co">## 142 orange   M         20.6       14.4            42.8           46.5</span></span>
+<span><span class="co">## 143 orange   M         21.0       15.0            42.9           47.2</span></span>
+<span><span class="co">## 144 orange   M         21.5       15.5            45.5           49.7</span></span>
+<span><span class="co">## 145 orange   M         21.6       15.4            45.7           49.7</span></span>
+<span><span class="co">## 146 orange   M         21.6       14.8            43.4           48.2</span></span>
+<span><span class="co">## 147 orange   M         21.9       15.7            45.4           51.0</span></span>
+<span><span class="co">## 148 orange   M         22.1       15.8            44.6           49.6</span></span>
+<span><span class="co">## 149 orange   M         23.0       16.8            47.2           52.1</span></span>
+<span><span class="co">## 150 orange   M         23.1       15.7            47.6           52.8</span></span>
+<span><span class="co">## 151 orange   F         10.7        9.7            21.4           24.0</span></span>
+<span><span class="co">## 152 orange   F         11.4        9.2            21.7           24.1</span></span>
+<span><span class="co">## 153 orange   F         12.5       10.0            24.1           27.0</span></span>
+<span><span class="co">## 154 orange   F         12.6       11.5            25.0           28.1</span></span>
+<span><span class="co">## 155 orange   F         12.9       11.2            25.8           29.1</span></span>
+<span><span class="co">## 156 orange   F         14.0       11.9            27.0           31.4</span></span>
+<span><span class="co">## 157 orange   F         14.0       12.8            28.8           32.4</span></span>
+<span><span class="co">## 158 orange   F         14.3       12.2            28.1           31.8</span></span>
+<span><span class="co">## 159 orange   F         14.7       13.2            29.6           33.4</span></span>
+<span><span class="co">## 160 orange   F         14.9       13.0            30.0           33.7</span></span>
+<span><span class="co">## 161 orange   F         15.0       12.3            30.1           33.3</span></span>
+<span><span class="co">## 162 orange   F         15.6       13.5            31.2           35.1</span></span>
+<span><span class="co">## 163 orange   F         15.6       14.0            31.6           35.3</span></span>
+<span><span class="co">## 164 orange   F         15.6       14.1            31.0           34.5</span></span>
+<span><span class="co">## 165 orange   F         15.7       13.6            31.0           34.8</span></span>
+<span><span class="co">## 166 orange   F         16.1       13.6            31.6           36.0</span></span>
+<span><span class="co">## 167 orange   F         16.1       13.7            31.4           36.1</span></span>
+<span><span class="co">## 168 orange   F         16.2       14.0            31.6           35.6</span></span>
+<span><span class="co">## 169 orange   F         16.7       14.3            32.3           37.0</span></span>
+<span><span class="co">## 170 orange   F         17.1       14.5            33.1           37.2</span></span>
+<span><span class="co">## 171 orange   F         17.5       14.3            34.5           39.6</span></span>
+<span><span class="co">## 172 orange   F         17.5       14.4            34.5           39.0</span></span>
+<span><span class="co">## 173 orange   F         17.5       14.7            33.3           37.6</span></span>
+<span><span class="co">## 174 orange   F         17.6       14.0            34.0           38.6</span></span>
+<span><span class="co">## 175 orange   F         18.0       14.9            34.7           39.5</span></span>
+<span><span class="co">## 176 orange   F         18.0       16.3            37.9           43.0</span></span>
+<span><span class="co">## 177 orange   F         18.3       15.7            35.1           40.5</span></span>
+<span><span class="co">## 178 orange   F         18.4       15.5            35.6           40.0</span></span>
+<span><span class="co">## 179 orange   F         18.4       15.7            36.5           41.6</span></span>
+<span><span class="co">## 180 orange   F         18.5       14.6            37.0           42.0</span></span>
+<span><span class="co">## 181 orange   F         18.6       14.5            34.7           39.4</span></span>
+<span><span class="co">## 182 orange   F         18.8       15.2            35.8           40.5</span></span>
+<span><span class="co">## 183 orange   F         18.9       16.7            36.3           41.7</span></span>
+<span><span class="co">## 184 orange   F         19.1       16.0            37.8           42.3</span></span>
+<span><span class="co">## 185 orange   F         19.1       16.3            37.9           42.6</span></span>
+<span><span class="co">## 186 orange   F         19.7       16.7            39.9           43.6</span></span>
+<span><span class="co">## 187 orange   F         19.9       16.6            39.4           43.9</span></span>
+<span><span class="co">## 188 orange   F         19.9       17.9            40.1           46.4</span></span>
+<span><span class="co">## 189 orange   F         20.0       16.7            40.4           45.1</span></span>
+<span><span class="co">## 190 orange   F         20.1       17.2            39.8           44.1</span></span>
+<span><span class="co">## 191 orange   F         20.3       16.0            39.4           44.1</span></span>
+<span><span class="co">## 192 orange   F         20.5       17.5            40.0           45.5</span></span>
+<span><span class="co">## 193 orange   F         20.6       17.5            41.5           46.2</span></span>
+<span><span class="co">## 194 orange   F         20.9       16.5            39.9           44.7</span></span>
+<span><span class="co">## 195 orange   F         21.3       18.4            43.8           48.4</span></span>
+<span><span class="co">## 196 orange   F         21.4       18.0            41.2           46.2</span></span>
+<span><span class="co">## 197 orange   F         21.7       17.1            41.7           47.2</span></span>
+<span><span class="co">## 198 orange   F         21.9       17.2            42.6           47.4</span></span>
+<span><span class="co">## 199 orange   F         22.5       17.2            43.0           48.7</span></span>
+<span><span class="co">## 200 orange   F         23.1       20.2            46.2           52.5</span></span>
+<span><span class="co">##     body_depth Latitude</span></span>
+<span><span class="co">## 1          7.0     22.0</span></span>
+<span><span class="co">## 2          7.4     22.1</span></span>
+<span><span class="co">## 3          7.7     22.4</span></span>
+<span><span class="co">## 4          8.2     22.6</span></span>
+<span><span class="co">## 5          8.2     22.0</span></span>
+<span><span class="co">## 6          9.8     22.1</span></span>
+<span><span class="co">## 7          9.8     22.4</span></span>
+<span><span class="co">## 8         10.4     22.6</span></span>
+<span><span class="co">## 9          9.7     22.0</span></span>
+<span><span class="co">## 10        10.3     22.1</span></span>
+<span><span class="co">## 11        10.9     22.4</span></span>
+<span><span class="co">## 12        11.4     22.6</span></span>
+<span><span class="co">## 13        11.4     22.0</span></span>
+<span><span class="co">## 14        10.9     30.0</span></span>
+<span><span class="co">## 15        11.0     22.4</span></span>
+<span><span class="co">## 16        11.4     31.2</span></span>
+<span><span class="co">## 17        11.0     22.0</span></span>
+<span><span class="co">## 18        11.2     32.2</span></span>
+<span><span class="co">## 19        11.3     22.4</span></span>
+<span><span class="co">## 20        12.1     22.6</span></span>
+<span><span class="co">## 21        12.7     22.0</span></span>
+<span><span class="co">## 22        13.7     22.0</span></span>
+<span><span class="co">## 23        13.2     22.1</span></span>
+<span><span class="co">## 24        13.4     22.4</span></span>
+<span><span class="co">## 25        13.6     22.6</span></span>
+<span><span class="co">## 26        13.6     30.4</span></span>
+<span><span class="co">## 27        13.6     32.4</span></span>
+<span><span class="co">## 28        14.5     33.4</span></span>
+<span><span class="co">## 29        14.2     33.1</span></span>
+<span><span class="co">## 30        14.4     33.6</span></span>
+<span><span class="co">## 31        15.7     30.4</span></span>
+<span><span class="co">## 32        15.4     32.4</span></span>
+<span><span class="co">## 33        14.9     33.4</span></span>
+<span><span class="co">## 34        15.2     33.1</span></span>
+<span><span class="co">## 35        14.9     33.6</span></span>
+<span><span class="co">## 36        14.9     30.4</span></span>
+<span><span class="co">## 37        15.6     32.4</span></span>
+<span><span class="co">## 38        15.1     33.4</span></span>
+<span><span class="co">## 39        15.6     33.1</span></span>
+<span><span class="co">## 40        16.1     30.4</span></span>
+<span><span class="co">## 41        16.0     32.4</span></span>
+<span><span class="co">## 42        16.8     33.4</span></span>
+<span><span class="co">## 43        16.2     33.1</span></span>
+<span><span class="co">## 44        17.8     33.6</span></span>
+<span><span class="co">## 45        17.8     30.4</span></span>
+<span><span class="co">## 46        16.8     32.4</span></span>
+<span><span class="co">## 47        17.8     33.4</span></span>
+<span><span class="co">## 48        18.6     33.1</span></span>
+<span><span class="co">## 49        18.3     36.4</span></span>
+<span><span class="co">## 50        20.0     36.2</span></span>
+<span><span class="co">## 51         6.1     36.8</span></span>
+<span><span class="co">## 52         7.7     36.4</span></span>
+<span><span class="co">## 53         7.7     36.2</span></span>
+<span><span class="co">## 54         7.7     36.8</span></span>
+<span><span class="co">## 55         7.8     36.4</span></span>
+<span><span class="co">## 56         8.8     36.2</span></span>
+<span><span class="co">## 57         8.4     36.8</span></span>
+<span><span class="co">## 58         8.9     36.4</span></span>
+<span><span class="co">## 59         8.3     36.2</span></span>
+<span><span class="co">## 60         9.1     36.8</span></span>
+<span><span class="co">## 61         8.2     36.4</span></span>
+<span><span class="co">## 62         9.4     36.2</span></span>
+<span><span class="co">## 63        10.1     36.8</span></span>
+<span><span class="co">## 64        10.4     36.4</span></span>
+<span><span class="co">## 65        10.0     36.2</span></span>
+<span><span class="co">## 66        10.4     36.8</span></span>
+<span><span class="co">## 67        10.9     36.4</span></span>
+<span><span class="co">## 68        10.5     38.7</span></span>
+<span><span class="co">## 69        11.0     36.7</span></span>
+<span><span class="co">## 70        11.2     34.2</span></span>
+<span><span class="co">## 71        11.9     36.8</span></span>
+<span><span class="co">## 72        11.1     36.4</span></span>
+<span><span class="co">## 73        11.5     36.2</span></span>
+<span><span class="co">## 74        11.3     36.8</span></span>
+<span><span class="co">## 75        11.1     36.4</span></span>
+<span><span class="co">## 76        11.5     36.2</span></span>
+<span><span class="co">## 77        11.7     36.8</span></span>
+<span><span class="co">## 78        11.9     36.4</span></span>
+<span><span class="co">## 79        13.1     38.7</span></span>
+<span><span class="co">## 80        12.5     36.7</span></span>
+<span><span class="co">## 81        12.0     34.2</span></span>
+<span><span class="co">## 82        14.0     36.8</span></span>
+<span><span class="co">## 83        14.0     36.4</span></span>
+<span><span class="co">## 84        13.5     36.2</span></span>
+<span><span class="co">## 85        13.8     36.8</span></span>
+<span><span class="co">## 86        13.0     36.4</span></span>
+<span><span class="co">## 87        14.7     36.2</span></span>
+<span><span class="co">## 88        13.8     36.8</span></span>
+<span><span class="co">## 89        13.8     36.4</span></span>
+<span><span class="co">## 90        14.7     38.7</span></span>
+<span><span class="co">## 91        13.4     36.7</span></span>
+<span><span class="co">## 92        14.3     34.2</span></span>
+<span><span class="co">## 93        14.1     36.8</span></span>
+<span><span class="co">## 94        15.3     36.4</span></span>
+<span><span class="co">## 95        13.9     36.2</span></span>
+<span><span class="co">## 96        15.2     36.8</span></span>
+<span><span class="co">## 97        15.4     36.4</span></span>
+<span><span class="co">## 98        16.6     36.2</span></span>
+<span><span class="co">## 99        17.0     36.8</span></span>
+<span><span class="co">## 100       18.1     36.4</span></span>
+<span><span class="co">## 101        7.4     38.7</span></span>
+<span><span class="co">## 102        9.0     36.7</span></span>
+<span><span class="co">## 103        9.2     34.2</span></span>
+<span><span class="co">## 104       10.1     36.8</span></span>
+<span><span class="co">## 105       10.8     36.4</span></span>
+<span><span class="co">## 106       11.2     36.2</span></span>
+<span><span class="co">## 107       12.1     36.8</span></span>
+<span><span class="co">## 108       12.2     36.4</span></span>
+<span><span class="co">## 109       12.0     36.2</span></span>
+<span><span class="co">## 110       12.2     36.8</span></span>
+<span><span class="co">## 111       13.1     36.4</span></span>
+<span><span class="co">## 112       13.5     38.7</span></span>
+<span><span class="co">## 113       13.1     36.7</span></span>
+<span><span class="co">## 114       13.3     34.2</span></span>
+<span><span class="co">## 115       12.9     36.8</span></span>
+<span><span class="co">## 116       12.7     36.4</span></span>
+<span><span class="co">## 117       13.5     36.2</span></span>
+<span><span class="co">## 118       12.8     36.8</span></span>
+<span><span class="co">## 119       13.1     36.4</span></span>
+<span><span class="co">## 120       14.0     36.2</span></span>
+<span><span class="co">## 121       13.9     36.8</span></span>
+<span><span class="co">## 122       13.5     36.4</span></span>
+<span><span class="co">## 123       14.2     38.7</span></span>
+<span><span class="co">## 124       14.7     36.7</span></span>
+<span><span class="co">## 125       14.5     34.2</span></span>
+<span><span class="co">## 126       15.7     36.8</span></span>
+<span><span class="co">## 127       16.2     36.4</span></span>
+<span><span class="co">## 128       15.3     36.2</span></span>
+<span><span class="co">## 129       16.1     36.8</span></span>
+<span><span class="co">## 130       16.7     36.4</span></span>
+<span><span class="co">## 131       16.5     36.2</span></span>
+<span><span class="co">## 132       17.1     36.8</span></span>
+<span><span class="co">## 133       17.2     36.4</span></span>
+<span><span class="co">## 134       17.7     38.7</span></span>
+<span><span class="co">## 135       17.3     36.7</span></span>
+<span><span class="co">## 136       17.0     34.2</span></span>
+<span><span class="co">## 137       17.5     36.8</span></span>
+<span><span class="co">## 138       17.9     36.4</span></span>
+<span><span class="co">## 139       17.8     36.2</span></span>
+<span><span class="co">## 140       17.9     36.8</span></span>
+<span><span class="co">## 141       18.0     36.4</span></span>
+<span><span class="co">## 142       19.6     36.2</span></span>
+<span><span class="co">## 143       19.4     36.8</span></span>
+<span><span class="co">## 144       20.9     36.4</span></span>
+<span><span class="co">## 145       20.6     38.7</span></span>
+<span><span class="co">## 146       20.1     36.7</span></span>
+<span><span class="co">## 147       21.1     34.2</span></span>
+<span><span class="co">## 148       20.5     36.8</span></span>
+<span><span class="co">## 149       21.5     36.4</span></span>
+<span><span class="co">## 150       21.6     36.2</span></span>
+<span><span class="co">## 151        9.8     36.8</span></span>
+<span><span class="co">## 152        9.7     36.4</span></span>
+<span><span class="co">## 153       10.9     36.2</span></span>
+<span><span class="co">## 154       11.5     36.8</span></span>
+<span><span class="co">## 155       11.9     36.4</span></span>
+<span><span class="co">## 156       12.6     38.7</span></span>
+<span><span class="co">## 157       12.7     36.7</span></span>
+<span><span class="co">## 158       12.5     34.2</span></span>
+<span><span class="co">## 159       12.9     36.8</span></span>
+<span><span class="co">## 160       13.3     36.4</span></span>
+<span><span class="co">## 161       14.0     36.2</span></span>
+<span><span class="co">## 162       14.1     36.8</span></span>
+<span><span class="co">## 163       13.8     36.4</span></span>
+<span><span class="co">## 164       13.8     36.2</span></span>
+<span><span class="co">## 165       13.8     36.8</span></span>
+<span><span class="co">## 166       14.0     36.4</span></span>
+<span><span class="co">## 167       13.9     38.7</span></span>
+<span><span class="co">## 168       13.7     36.7</span></span>
+<span><span class="co">## 169       14.7     34.2</span></span>
+<span><span class="co">## 170       14.6     36.8</span></span>
+<span><span class="co">## 171       15.6     36.4</span></span>
+<span><span class="co">## 172       16.0     36.2</span></span>
+<span><span class="co">## 173       14.6     36.8</span></span>
+<span><span class="co">## 174       15.5     36.4</span></span>
+<span><span class="co">## 175       15.7     36.2</span></span>
+<span><span class="co">## 176       17.2     36.8</span></span>
+<span><span class="co">## 177       16.1     36.4</span></span>
+<span><span class="co">## 178       15.9     38.7</span></span>
+<span><span class="co">## 179       16.4     36.7</span></span>
+<span><span class="co">## 180       16.6     34.2</span></span>
+<span><span class="co">## 181       15.0     36.8</span></span>
+<span><span class="co">## 182       16.6     36.4</span></span>
+<span><span class="co">## 183       15.3     36.2</span></span>
+<span><span class="co">## 184       16.8     36.8</span></span>
+<span><span class="co">## 185       17.2     36.4</span></span>
+<span><span class="co">## 186       18.2     36.2</span></span>
+<span><span class="co">## 187       17.9     36.8</span></span>
+<span><span class="co">## 188       17.9     36.4</span></span>
+<span><span class="co">## 189       17.7     38.7</span></span>
+<span><span class="co">## 190       18.6     36.7</span></span>
+<span><span class="co">## 191       18.0     34.2</span></span>
+<span><span class="co">## 192       19.2     36.8</span></span>
+<span><span class="co">## 193       19.2     36.4</span></span>
+<span><span class="co">## 194       17.5     36.2</span></span>
+<span><span class="co">## 195       20.0     36.8</span></span>
+<span><span class="co">## 196       18.7     36.4</span></span>
+<span><span class="co">## 197       19.6     36.2</span></span>
+<span><span class="co">## 198       19.5     36.8</span></span>
+<span><span class="co">## 199       19.8     36.4</span></span>
+<span><span class="co">## 200       21.1     38.7</span></span></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
