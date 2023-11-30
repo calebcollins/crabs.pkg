@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Caleb
 Collins</h4>
             
-            <h4 data-toc-skip class="date">2023-11-28</h4>
+            <h4 data-toc-skip class="date">2023-11-30</h4>
       
       
       <div class="hidden name"><code>crabstutorial.Rmd</code></div>
@@ -86,55 +86,95 @@ Collins</h4>
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"calebcollins/crabs.pkg"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Using github PAT from envvar GITHUB_PAT</span></span></code></pre>
 <pre><code><span><span class="co">## Downloading GitHub repo calebcollins/crabs.pkg@HEAD</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## * checking for file ‘/tmp/Rtmp0zZgQy/remotes3c902aaaa8b7/calebcollins-crabs.pkg-1de961b/DESCRIPTION’ ... OK</span></span>
+<pre><code><span><span class="co">## bslib  (0.6.0 -&gt; 0.6.1) [CRAN]</span></span>
+<span><span class="co">## scales (1.2.1 -&gt; 1.3.0) [CRAN]</span></span></code></pre>
+<pre><code><span><span class="co">## Installing 2 packages: bslib, scales</span></span></code></pre>
+<pre><code><span><span class="co">## Installing packages into '/tmp/RtmpYqARke/temp_libpath131226108e4'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">## * checking for file ‘/tmp/Rtmps2caxJ/remotes750217427b3/calebcollins-crabs.pkg-34a5e8c/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">## * preparing ‘collins.pkg’:</span></span>
 <span><span class="co">## * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">## * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">## * checking for empty or unneeded directories</span></span>
 <span><span class="co">## * building ‘collins.pkg_0.1.0.tar.gz’</span></span>
 <span><span class="co">## Warning: invalid uid value replaced by that for user 'nobody'</span></span></code></pre>
-<pre><code><span><span class="co">## Installing package into '/tmp/RtmpSZoCxI/temp_libpath396c3b5dd762'</span></span>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpYqARke/temp_libpath131226108e4'</span></span>
 <span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">collins.pkg</span><span class="op">)</span></span></code></pre></div>
 <p>Step 2, Download the crabs data set from googlesheets</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org" class="external-link">googlesheets4</a></span><span class="op">)</span></span>
 <span><span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html" class="external-link">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">crabs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html" class="external-link">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Reading from <span style="color: #00BBBB;">crabs</span>.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Range <span style="color: #BBBB00;">crabs</span>.</span></span></code></pre>
-<p>Now we will clean the data set by removing na’s will stop if no N/As
-are found</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/clean_data.html">clean_data</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
-<p>Now we will mutate the data. Sorting it by a chosen column</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"hindfoot_lenght"</span><span class="op">)</span></span>
+<p>Step 3 install any packages not all ready installed</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpYqARke/temp_libpath131226108e4'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.4</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.5.1</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2  </span> 3.4.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble   </span> 3.2.1</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">lubridate</span> 1.9.3     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr    </span> 1.3.0</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr    </span> 1.0.2</span></span></code></pre>
+<pre><code><span><span class="co">## ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">## <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span></span>
+<span><span class="co">## <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use the conflicted package (<span style="color: #0000BB; font-style: italic;">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors</span></span></code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpYqARke/temp_libpath131226108e4'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>,<span class="st">"rear_width"</span><span class="op">)</span></span></code></pre></div>
-<p>Now we will make a graph with two columns</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Installing package into '/tmp/RtmpYqARke/temp_libpath131226108e4'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<p>Now we will check and clean the data set if need by removing
+N/A’s</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/clean_data.html">clean_data</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
+<p>Now we will sort it by a chosen column, this allows us to prioritisze
+one column of data</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"hindfoot_lenght"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mutate_data.html">mutate_data</a></span><span class="op">(</span><span class="va">crabs</span>,<span class="st">"rear_width"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 200 × 8</span></span></span>
+<span><span class="co">##    color sex   frontal_lobe rear_width carapace_length carapace_width body_depth</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> blue  F              7.2        6.5            14.7           17.1        6.1</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> blue  M              8.1        6.7            16.1           19          7  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> oran… M              9.1        6.9            16.7           18.6        7.4</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> blue  M              8.8        7.7            18.1           20.8        7.4</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> blue  M              9.2        7.8            19             22.4        7.7</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> blue  M              9.6        7.9            20.1           23.1        8.2</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> blue  M              9.8        8              20.3           23          8.2</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> blue  F              9.1        8.1            18.5           21.6        7.7</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> blue  F              9.1        8.2            19.2           22.2        7.7</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> blue  F              9.5        8.2            19.6           22.4        7.8</span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 190 more rows</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 1 more variable: Latitude &lt;dbl&gt;</span></span></span></code></pre>
+<p>Now we will make a scatter plot letting us compare two columns</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/function_graph.html">function_graph</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">rear_width</span>, <span class="va">body_depth</span><span class="op">)</span></span></code></pre></div>
-<p><img src="crabstutorial_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p><img src="crabstutorial_files/figure-html/unnamed-chunk-7-1.png" width="700">
+An example of a useless graph</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/function_graph.html">function_graph</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">sex</span>, <span class="va">color</span><span class="op">)</span></span></code></pre></div>
-<p><img src="crabstutorial_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="crabstutorial_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Next we will perform an linear model analysis</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/lm_function.html">lm_function</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"rear_width"</span>, <span class="st">"body_depth"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Call:</span></span>
@@ -154,10 +194,10 @@ are found</p>
 <span><span class="co">## Residual standard error: 1.18 on 198 degrees of freedom</span></span>
 <span><span class="co">## Multiple R-squared:  0.7907, Adjusted R-squared:  0.7896 </span></span>
 <span><span class="co">## F-statistic: 747.9 on 1 and 198 DF,  p-value: &lt; 2.2e-16</span></span></code></pre>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/lm_function.html">lm_function</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="st">"rear_width"</span>, <span class="st">"hindfoot_length"</span><span class="op">)</span></span></code></pre></div>
 <p>Last we will kill the data because i did it on accident</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/fun_function.html">fun_function</a></span><span class="op">(</span><span class="va">crabs</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      color sex frontal_lobe rear_width carapace_length carapace_width</span></span>
 <span><span class="co">## 1     blue   M          8.1        6.7            16.1           19.0</span></span>
