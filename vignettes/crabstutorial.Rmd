@@ -22,25 +22,38 @@ library(googlesheets4)
 googlesheets4::gs4_deauth()
 crabs <- read_sheet("https://docs.google.com/spreadsheets/d/14LA9eB3CEgEosqUwT7zkhjfiNsGt6zKu9BU9xAx3BUo/edit?usp=sharing")
 ```
-Now we will clean the data set by removing na's will stop if no N/As are found 
+Step 3 install any packages not all ready installed 
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+
+install.packages("dplyr")
+library(dplyr)
+
+install.packages("ggplot2")
+library(ggplot2)
+```
+Now we will check and clean the data set if need by removing N/A's
 
 ```{r, eval=FALSE}
 clean_data(crabs)
 ```
 
 
-Now we will mutate the data. Sorting it by a chosen column
+Now we will sort it by a chosen column, this allows us to prioritisze  one column of data 
 ```{r, eval=FALSE}
 mutate_data(crabs, "hindfoot_lenght")
-
+```
+```{r}
 mutate_data(crabs,"rear_width")
 ```
 
-Now we will make a graph with two columns 
+Now we will make a scatter plot letting us compare two columns 
 ```{r} 
 library(ggplot2)
 function_graph(crabs, rear_width, body_depth)
 ```
+An example of a useless graph
 ```{r}
 function_graph(crabs, sex, color)
 ```
@@ -48,7 +61,6 @@ function_graph(crabs, sex, color)
 Next we will perform an linear model analysis
 
 ```{r}
- library(dplyr)
 lm_function(crabs, "rear_width", "body_depth")
 ```
 
